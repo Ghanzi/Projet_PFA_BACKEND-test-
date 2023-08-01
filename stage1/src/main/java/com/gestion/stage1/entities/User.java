@@ -1,20 +1,22 @@
 package com.gestion.stage1.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.UUID;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User {
-    @Id @GeneratedValue(generator = "uuid2")
+    @Id @GeneratedValue(strategy = GenerationType.AUTO, generator = "uuid2")
     private UUID IDUser;
     private String first_name;
     private String last_name;
     private String email;
-    private Integer phone_number;
+    private String phone_number;
     private Boolean activation;
+
+
+
 
     public UUID getIDUser() {
         return IDUser;
@@ -48,11 +50,11 @@ public class User {
         this.email = email;
     }
 
-    public Integer getPhone_number() {
+    public String getPhone_number() {
         return phone_number;
     }
 
-    public void setPhone_number(Integer phone_number) {
+    public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
     }
 
@@ -64,7 +66,7 @@ public class User {
         this.activation = activation;
     }
 
-    public User(String first_name, String last_name, String email, Integer phone_number, Boolean activation) {
+    public User(String first_name, String last_name, String email, String phone_number, Boolean activation) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.email = email;

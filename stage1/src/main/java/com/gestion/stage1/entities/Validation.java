@@ -1,8 +1,6 @@
 package com.gestion.stage1.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -15,6 +13,14 @@ public class Validation {
     private UUID IDValidation;
     private LocalDate validation_date;
     private Boolean state;
+
+    @ManyToOne
+    private Admin_Validators validateur;
+
+    @OneToOne(mappedBy = "validation")
+    private Timesheet timesheet;
+
+
 
     public UUID getIDValidation() {
         return IDValidation;

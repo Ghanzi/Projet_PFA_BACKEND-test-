@@ -4,15 +4,15 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
 public class Holidays {
     @Id @GeneratedValue(generator = "uuid2")
     private UUID IDHolidays;
-    private Integer day;
-    private Integer month;
-    private Integer year;
+
+    private LocalDate date;
     private String label;
 
     public UUID getIDHolidays() {
@@ -23,28 +23,12 @@ public class Holidays {
         this.IDHolidays = IDHolidays;
     }
 
-    public Integer getDay() {
-        return day;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setDay(Integer day) {
-        this.day = day;
-    }
-
-    public Integer getMonth() {
-        return month;
-    }
-
-    public void setMonth(Integer month) {
-        this.month = month;
-    }
-
-    public Integer getYear() {
-        return year;
-    }
-
-    public void setYear(Integer year) {
-        this.year = year;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public String getLabel() {
@@ -55,10 +39,9 @@ public class Holidays {
         this.label = label;
     }
 
-    public Holidays(Integer day, Integer month, Integer year, String label) {
-        this.day = day;
-        this.month = month;
-        this.year = year;
+    public Holidays(UUID IDHolidays, LocalDate date, String label) {
+        this.IDHolidays = IDHolidays;
+        this.date = date;
         this.label = label;
     }
 
@@ -70,9 +53,7 @@ public class Holidays {
     public String toString() {
         return "Holidays{" +
                 "IDHolidays=" + IDHolidays +
-                ", day=" + day +
-                ", month=" + month +
-                ", year=" + year +
+                ", date=" + date +
                 ", label='" + label + '\'' +
                 '}';
     }

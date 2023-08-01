@@ -1,17 +1,24 @@
 package com.gestion.stage1.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.UUID;
 
 @Entity
 public class InfoAccess {
+    @Id @GeneratedValue(generator = "uuid2")
+    private UUID IDInfoAccess;
     private LocalDate date;
     private LocalTime time;
     @ManyToOne
     private Timesheet timesheet;
+
+    @ManyToOne
+    private Consultant consultant;
+
+
 
     public LocalDate getDate() {
         return date;
@@ -37,6 +44,22 @@ public class InfoAccess {
         this.timesheet = timesheet;
     }
 
+    public UUID getIDInfoAccess() {
+        return IDInfoAccess;
+    }
+
+    public void setIDInfoAccess(UUID IDInfoAccess) {
+        this.IDInfoAccess = IDInfoAccess;
+    }
+
+    public Consultant getConsultant() {
+        return consultant;
+    }
+
+    public void setConsultant(Consultant consultant) {
+        this.consultant = consultant;
+    }
+
     public InfoAccess(LocalDate date, LocalTime time, Timesheet timesheet) {
         this.date = date;
         this.time = time;
@@ -54,5 +77,13 @@ public class InfoAccess {
                 ", time=" + time +
                 ", timesheet=" + timesheet +
                 '}';
+    }
+
+    public void setId(UUID id) {
+        this.IDInfoAccess= id;
+    }
+
+    public UUID getId() {
+        return IDInfoAccess;
     }
 }
