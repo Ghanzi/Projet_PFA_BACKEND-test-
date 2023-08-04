@@ -6,6 +6,8 @@ import com.gestion.stage1.repositories.TimesheetRepository;
 import com.gestion.stage1.services.TimesheetService;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,5 +34,16 @@ public class TimesheetController {
     @PostMapping("/{idUser}")
     public Timesheet saveTimesheets(@RequestBody Timesheet timesheet,@PathVariable UUID idUser){
         return timesheetService.createTimesheet(timesheet,idUser);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteTimesheet(@PathVariable UUID id) {
+        try {
+            timesheetService.deleteTimesheet(id);
+            return new ResponseEntity<>("Timesheet deleted successfully", HttpStatus.OK);
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<>("Timesheet not found", HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>("An error occurred while deleting the timesheet", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
