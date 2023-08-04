@@ -10,7 +10,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("api/v1/accessInfo")
+@RequestMapping("api/v1/AccessInfo")
 @CrossOrigin("*")
 public class InfoAccessController {
     @Autowired

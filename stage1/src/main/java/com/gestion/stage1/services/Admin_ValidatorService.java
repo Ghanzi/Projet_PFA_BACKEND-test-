@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface Admin_ValidatorService {
     List<Admin_Validators> getAllConsultants();
+
+    Admin_Validators saveAdmin_Validators(Admin_Validators admin_validators);
 }

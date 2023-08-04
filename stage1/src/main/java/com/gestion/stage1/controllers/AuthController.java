@@ -17,7 +17,7 @@ import java.util.Map;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/v1/")
+@RequestMapping("/api/v1/Auth")
 public class AuthController {
 
     RestTemplate restTemplate = new RestTemplate();

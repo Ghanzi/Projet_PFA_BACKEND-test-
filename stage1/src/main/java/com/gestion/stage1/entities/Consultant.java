@@ -8,7 +8,7 @@ import jakarta.persistence.OneToOne;
 import java.util.List;
 
 @Entity
-public class Consultant extends User {
+public class    Consultant extends User {
 
 
     private String service_name;

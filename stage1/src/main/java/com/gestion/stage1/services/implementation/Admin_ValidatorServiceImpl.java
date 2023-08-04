@@ -20,4 +20,8 @@ public class Admin_ValidatorServiceImpl implements Admin_ValidatorService {
     public List<Admin_Validators> getAllConsultants() {
         return admin_Validators_repo.findAll();
     }
+    @Override
+    public Admin_Validators saveAdmin_Validators(Admin_Validators admin_validators) {
+        return admin_Validators_repo.save(admin_validators);
+    }
 }

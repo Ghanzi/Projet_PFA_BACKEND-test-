@@ -10,7 +10,7 @@ public interface TimesheetService {
 
     Timesheet getTimesheetById(UUID id);
 
-    Timesheet createTimesheet(Timesheet timesheet);
+    Timesheet createTimesheet(Timesheet timesheet,UUID idUser);
 
     Timesheet updateTimesheet(UUID id, Timesheet updatedTimesheet);
 

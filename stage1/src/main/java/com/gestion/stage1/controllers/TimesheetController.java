@@ -1,33 +1,36 @@
 package com.gestion.stage1.controllers;
 
+import com.gestion.stage1.entities.Consultant;
 import com.gestion.stage1.entities.Timesheet;
 import com.gestion.stage1.repositories.TimesheetRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.gestion.stage1.services.TimesheetService;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/Timesheets")
+@RequestMapping("/api/v1/Timesheets")
+@RequiredArgsConstructor
 public class TimesheetController {
-    private final TimesheetRepository timesheetRepository;
+    private final TimesheetService timesheetService;
 
-    public TimesheetController(TimesheetRepository timesheetRepository) {
-        this.timesheetRepository = timesheetRepository;
-    }
 
     @GetMapping
     public List<Timesheet> getAllTimesheets() {
-        return timesheetRepository.findAll();
+        return timesheetService.getAllTimesheets();
     }
 
     @GetMapping("/{id}")
     public Timesheet getTimesheetById(@PathVariable UUID id) {
-        return timesheetRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("Timesheet not found with id: " + id));
+        return timesheetService.getTimesheetById(id);
+
+    }
+    @PostMapping("/{idUser}")
+    public Timesheet saveTimesheets(@RequestBody Timesheet timesheet,@PathVariable UUID idUser){
+        return timesheetService.createTimesheet(timesheet,idUser);
     }
 }
