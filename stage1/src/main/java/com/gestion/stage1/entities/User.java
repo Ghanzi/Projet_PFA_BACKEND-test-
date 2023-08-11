@@ -34,9 +34,7 @@ public class User {
         this.first_name = first_name;
     }
 
-    public String getLast_name() {
-        return last_name;
-    }
+    public String getLast_name() { return last_name; }
 
     public void setLast_name(String last_name) {
         this.last_name = last_name;
@@ -50,9 +48,7 @@ public class User {
         this.email = email;
     }
 
-    public String getPhone_number() {
-        return phone_number;
-    }
+    public String getPhone_number() { return phone_number; }
 
     public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
@@ -89,4 +85,7 @@ public class User {
                 ", activation=" + activation +
                 '}';
     }
+
+    public String getPhoneNumber() { return phone_number; }
+    public String getLastName() { return last_name; }
 }

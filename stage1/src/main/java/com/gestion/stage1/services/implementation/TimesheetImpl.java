@@ -42,24 +42,15 @@ public class TimesheetImpl implements TimesheetService {
 
         return timesheetRepository.save(timesheet);
     }
-
     @Override
-    public Timesheet updateTimesheet(UUID id, Timesheet updatedTimesheet) {
-        return null;
-    }
-
-    /*@Override
     public Timesheet updateTimesheet(UUID id, Timesheet updatedTimesheet) {
         Timesheet existingTimesheet = timesheetRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Timesheet not found with id: " + id));
-
-        // Mettez à jour les propriétés pertinentes de la feuille de temps existante avec les nouvelles valeurs
-        existingTimesheet.setEmployeeName(updatedTimesheet.getEmployeeName());
-        existingTimesheet.setDate(updatedTimesheet.getDate());
-        existingTimesheet.setHoursWorked(updatedTimesheet.getHoursWorked());
+        existingTimesheet.setConsultant(updatedTimesheet.getConsultant());
+        existingTimesheet.setInfoAccesses(updatedTimesheet.getInfoAccesses());
 
         return timesheetRepository.save(existingTimesheet);
-    }*/
+    }
     @Override
     public void deleteTimesheet(UUID id) {
         Timesheet existingTimesheet = timesheetRepository.findById(id)

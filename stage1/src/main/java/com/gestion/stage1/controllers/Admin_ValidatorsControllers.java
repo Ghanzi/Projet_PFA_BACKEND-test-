@@ -8,6 +8,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @CrossOrigin("*")
 @RestController
@@ -30,5 +31,18 @@ public class Admin_ValidatorsControllers{
     @PostMapping("/validateurs")
     public Admin_Validators saveAdmin_Validators(@RequestBody Admin_Validators admin_validators){
         return admin_validatorService.saveAdmin_Validators(admin_validators);
+    }
+    @DeleteMapping("/validateurs/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<Void> deleteValidator(@PathVariable UUID id) {
+        admin_validatorService.deleteValidator(id);
+        return ResponseEntity.noContent().build();
+    }
+    @PutMapping("/validateurs/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<Admin_Validators> updateValidator(
+            @PathVariable UUID id, @RequestBody Admin_Validators updatedValidator) {
+        Admin_Validators result = admin_validatorService.updateValidator(id, updatedValidator);
+        return ResponseEntity.ok(result);
     }
 }

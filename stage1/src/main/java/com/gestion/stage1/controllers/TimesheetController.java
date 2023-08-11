@@ -46,4 +46,16 @@ public class TimesheetController {
             return new ResponseEntity<>("An error occurred while deleting the timesheet", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<Timesheet> updateTimesheet(
+            @PathVariable UUID id, @RequestBody Timesheet updatedTimesheet) {
+        try {
+            Timesheet result = timesheetService.updateTimesheet(id, updatedTimesheet);
+            return ResponseEntity.ok(result);
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
